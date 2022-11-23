@@ -18,4 +18,4 @@ samples, guidance on mobile development, and a full API reference.
 ABAKARIM Oussama
 PLAIA PHILIPPE
 EL MEHDI EL AINE
-Cédric Corrales
+lupini medi
