@@ -8,7 +8,7 @@ part 'version_dto.g.dart';
 class VersionDTO{
   VersionDTO(this.version);
 
-    final String verion;
+    final String version;
 
     VersionDTO fromJson(json) => _$VersionDTOFromJson(json);
 }
