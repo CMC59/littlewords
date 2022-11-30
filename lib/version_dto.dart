@@ -10,5 +10,5 @@ class VersionDTO{
 
     final String version;
 
-    VersionDTO fromJson(json) => _$VersionDTOFromJson(json);
+   static VersionDTO fromJson(json) => _$VersionDTOFromJson(json);
 }
