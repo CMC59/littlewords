@@ -39,8 +39,11 @@ dependencies:
   dio: ^4.0.6
   flutter_riverpod: ^2.1.1
 
+  # Annotation
+  json_annotation: ^4.6.0
+  freezed_annotation: ^2.0.3
+
 dev_dependencies:
-  flutter_native_splash: ^2.2.15
   flutter_test:
     sdk: flutter
 
@@ -53,7 +56,11 @@ flutter_native_splash:
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
+  flutter_native_splash: ^2.2.15
   flutter_lints: ^2.0.0
+  build_runner: ^2.3.0
+  freezed: ^2.0.3+1
+  json_serializable: ^6.2.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

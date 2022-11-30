@@ -13,11 +13,11 @@ final dioProvider = Provider<Dio>((ref) {
 //Provider du numéro de version du backend
 final backendVersionProvider = FutureProvider<String>((ref) async {
   // On récupère l'instance de Dio
-final dio = ref.read(dioProvider);
+final Dio dio = ref.read(dioProvider);
 
   // On fait une requête Get sur l'URL /up
-final response = await dio.get('/up');
+final Response response = await dio.get('/up');
 
   //On retourne la réponse
-return response.data;
+return response.toString();
 });
