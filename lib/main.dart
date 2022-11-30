@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:littlewords/dio.provider.dart';
 
 
 void main() {
-  runApp(const ProviderScope(child: MyApp()));
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -62,33 +61,14 @@ class _MyHomePageState extends State<MyHomePage> {
     // than having to individually change instances of widgets.
     return Scaffold(
       appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
       ),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-        Consumer(builder: (BuildContext context, WidgetRef ref, Widget? child) {
-
-          // On utilise ref pour "lire" notre provider
-         final AsyncValue<String> read = ref.watch((backendVersionProvider));
-
-         // On gère les 3 cas :
-         // - donnée reçue
-         // - erreur dans le traitement
-         // - loading...
-          return read.when(data: (String data){
-            // On a la donnée, on veut l'afficher
-            return Text(data);
-          }, error: (error, stack){
-            return const Text('Impossible de récupérer la version du back');
-          }, loading: (){
-            return const CircularProgressIndicator();
-          });
-         // return Text('You have...');
+        children : [
+        Consumer(builder : (BuildContext context , WidgetRef ref , Widget ? child){
+          return Text ('You have ...');
         },),
-    ]
+        ]
       ),
      );
   }
