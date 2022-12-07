@@ -56,6 +56,34 @@ class DbHelper{
     return db.execute(insertWord);
   }
 
+  Future<int> countWords() async {
+    final Database db = await instance.database;
+    var res = await db.rawQuery("SELECT count(*) from words");
+    var count = Sqflite.firstIntValue(res);
+    return Future.value(count);
+  }
+  /// Permet de récupérer la liste complete des mots détenus
+  Future<List<WordDTO>> getAllWords() async {
+    // Récupération instance de la db
+    final Database db = await instance.database;
+
+    // execution query
+    final resultSet =
+        await db.rawQuery("SELECT * from words");
+
+    // On initialise une liste de mot vide
+    final List<WordDTO> results = <WordDTO>[];
+
+    // On parcours les résultats
+    for (var r in resultSet) {
+      // on instancie un WordDTO sur la base de r
+      var word = WordDTO.fromMap(r);
+      // on l'ajoute dans la liste de resultat
+      results.add(word);
+    }
+    // On retourne la liste des résultats
+    return Future.value(results);
+  }
 
 
 
