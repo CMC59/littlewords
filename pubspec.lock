@@ -241,12 +241,12 @@ packages:
     source: sdk
     version: "0.0.0"
   freezed:
-    dependency: "direct main"
+    dependency: "direct dev"
     description:
       name: freezed
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.3.0"
+    version: "2.3.1"
   freezed_annotation:
     dependency: "direct main"
     description:
@@ -274,7 +274,7 @@ packages:
       name: go_router
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "5.2.0"
+    version: "5.2.1"
   graphs:
     dependency: transitive
     description:
@@ -346,14 +346,14 @@ packages:
     source: hosted
     version: "4.7.0"
   json_serializable:
-    dependency: "direct main"
+    dependency: "direct dev"
     description:
       name: json_serializable
       url: "https://pub.dartlang.org"
     source: hosted
     version: "6.5.4"
   latlong2:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: latlong2
       url: "https://pub.dartlang.org"
@@ -573,7 +573,7 @@ packages:
       name: sqflite
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.2.0+3"
+    version: "2.2.2"
   sqflite_common:
     dependency: transitive
     description:
