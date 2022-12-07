@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
+import 'package:latlong2/latlong.dart' as mylatlong;
 
 void main() {
   runApp(ProviderScope(child: MyApp()));
@@ -63,14 +64,33 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Column(
-        children : [
-        Consumer(builder : (BuildContext context , WidgetRef ref , Widget ? child){
-          return Text ('You have ...');
-        },),
-        ]
+      body: Column(children: [
+        Consumer(
+          builder: (BuildContext context, WidgetRef ref, Widget? child) {
+            return Text('You have ...');
+          },
+        ),
+      ]),
+    );
+  }
+}
+
+class Myappmaps extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return FlutterMap(
+        options: MapOptions(
+      center: mylatlong.LatLng(51.5, -0.09),
+      zoom: 13.0,
+    ),
+    children: [
+      TileLayer(
+        urlTemplate:
+        'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+        userAgentPackageName: 'dev.fleaflet.flutter_map.example',
       ),
-     );
+    ]
+    );
   }
 }
 
