@@ -64,13 +64,7 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Column(children: [
-        Consumer(
-          builder: (BuildContext context, WidgetRef ref, Widget? child) {
-            return Text('You have ...');
-          },
-        ),
-      ]),
+      body: Myappmaps()
     );
   }
 }
