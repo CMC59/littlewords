@@ -29,6 +29,7 @@ class MyApp extends ConsumerWidget {
   }
   Widget? _error(error, stack) {
     return ErrorRoute();
+
   }
   Widget? _loading() {
     return LoadingRoute();
