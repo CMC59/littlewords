@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:littlewords/dio.provider.dart';
+import 'package:littlewords/providers/dio.provider.dart';
 
 
 class Version extends StatelessWidget {

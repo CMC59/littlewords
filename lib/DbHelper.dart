@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:littlewords/word_dto.dart';
+import 'package:littlewords/dto/word_dto.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 

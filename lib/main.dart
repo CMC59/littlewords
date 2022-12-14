@@ -4,7 +4,7 @@ import 'package:littlewords/routes/username.route.dart';
 import 'package:littlewords/routes/home.route.dart';
 import 'package:littlewords/routes/error.route.dart';
 import 'package:littlewords/routes/loading.route.dart';
-import 'package:littlewords/shared_pref.provider.dart';
+import 'package:littlewords/providers/shared_pref.provider.dart';
 
 void main() {
   runApp(ProviderScope(child: MyApp()));
