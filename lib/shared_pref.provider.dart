@@ -6,5 +6,6 @@ final sharedPrefProvider = FutureProvider<SharedPreferences>((ref){
 });
 
 final usernameProvider = FutureProvider((ref) async {
-  SharedPreferences.getInstance()
+  final SharedPreferences sharedPrefs = await SharedPreferences.getInstance();
+  return sharedPrefs.getString('username');
 });

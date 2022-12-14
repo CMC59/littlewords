@@ -2,33 +2,52 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:latlong2/latlong.dart' as mylatlong;
+import 'package:littlewords/shared_pref.provider.dart';
 
 void main() {
-  runApp(ProviderScope(child: MyApp()));
+  runApp(ProviderScope(child: MyApp2()));
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends ConsumerWidget {
   const MyApp({super.key});
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return MaterialApp(
+      title: 'LittleWords',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: ref.watch(usernameProvider).when(data: _data, error: _error, loading: _loading),
+    );
+  }
+
+  Widget? _data(String? data) {
+    if(null == data){
+      return Usernameroute();
+    }
+    return const HomeRoute();
+  }
+  Widget? _error(error, stack) {
+    return ErrorRoute();
+  }
+  Widget? _loading() {
+    return LoadingRoute();
+  }
+
+}
+
+class MyApp2 extends StatelessWidget {
+  const MyApp2({super.key});
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'LittleWords',
       theme: ThemeData(
-
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'Home Page'),
     );
   }
 }
