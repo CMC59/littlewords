@@ -30,11 +30,11 @@ class MyApp extends ConsumerWidget {
     return  const MyHomePage(title: 'LittleWords');
   }
   Widget? _error(error, stack) {
-    return ErrorRoute();
+    return const ErrorRoute();
 
   }
   Widget? _loading() {
-    return LoadingRoute();
+    return const LoadingRoute();
   }
 
 }
