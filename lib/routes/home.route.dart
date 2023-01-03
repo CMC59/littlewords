@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart' as mylatlong;
+import 'package:latlong2/latlong.dart';
+import 'package:location/location.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
@@ -25,7 +27,7 @@ class _MyHomePageState extends State<MyHomePage> {
         appBar: AppBar(
           title: Text(widget.title),
         ),
-        body: Myappmaps(latitude: 12.4,longitude: 12.5),
+        body: Myappmaps(),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.shopping_bag_outlined),
       onPressed: () {},
@@ -35,23 +37,53 @@ class _MyHomePageState extends State<MyHomePage> {
 }
 
 class Myappmaps extends StatelessWidget {
-  const Myappmaps({required this.latitude, required this.longitude});
 
-  final double latitude,longitude;
+  final _mapController = MapController();
   @override
   Widget build(BuildContext context) {
     return FlutterMap(
-        options: MapOptions(
-          center: mylatlong.LatLng(latitude, longitude),
-          zoom: 5.0,
+      mapController: _mapController,
+      options: MapOptions(
+          zoom: 14,
+          onMapReady: () async{
+            final LocationData? locationData = await _getDeviceLocation();
+
+            if(locationData == null) return;
+
+            _mapController.move(LatLng(locationData.latitude!, locationData.longitude!), _mapController.zoom);
+          }),
+      children: [
+        TileLayer(
+          urlTemplate:
+          'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+          userAgentPackageName: 'dev.fleaflet.flutter_map.example',
         ),
-        children: [
-          TileLayer(
-            urlTemplate:
-            'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-            userAgentPackageName: 'dev.fleaflet.flutter_map.example',
-          ),
-        ]
+      ]
     );
   }
+}
+
+Future<LocationData?> _getDeviceLocation() async {
+  Location location = Location();
+
+
+  bool serviceEnabled = await location.serviceEnabled();
+  if(!serviceEnabled){
+    serviceEnabled = await location.requestService();
+    if(!serviceEnabled){
+      return Future.value(null);
+    }
+  }
+
+  // On verifier que la perm
+  PermissionStatus permissionGranted = await location.hasPermission();
+  if(permissionGranted == PermissionStatus.denied){
+    permissionGranted = await location.requestPermission();
+    if(permissionGranted != PermissionStatus.denied){
+      return Future.value(null);
+    }
+  }
+
+  return location.getLocation();
+
 }
