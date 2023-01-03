@@ -25,18 +25,21 @@ class _MyHomePageState extends State<MyHomePage> {
         appBar: AppBar(
           title: Text(widget.title),
         ),
-        body: Myappmaps()
+        body: Myappmaps(latitude: 12.4,longitude: 12.5)
     );
   }
 }
 
 class Myappmaps extends StatelessWidget {
+  const Myappmaps({required this.latitude, required this.longitude});
+
+  final double latitude,longitude;
   @override
   Widget build(BuildContext context) {
     return FlutterMap(
         options: MapOptions(
-          center: mylatlong.LatLng(51.5, -0.09),
-          zoom: 13.0,
+          center: mylatlong.LatLng(latitude, longitude),
+          zoom: 5.0,
         ),
         children: [
           TileLayer(
