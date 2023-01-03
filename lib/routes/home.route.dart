@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
+import 'package:littlewords/bagScreen.dart';
 import 'package:latlong2/latlong.dart' as mylatlong;
 import 'package:latlong2/latlong.dart';
 import 'package:location/location.dart';
@@ -31,10 +32,7 @@ class _MyHomePageState extends State<MyHomePage> {
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.shopping_bag_outlined),
       onPressed: () {showDialog(context: context, builder: (BuildContext context) {
-        return new AlertDialog(
-          title: new Text("Ma liste de mots"),
-          content: new Text("Mot"),
-        );
+        return showBag();
       });
       },
       ),
@@ -93,3 +91,5 @@ Future<LocationData?> _getDeviceLocation() async {
   return location.getLocation();
 
 }
+
+
