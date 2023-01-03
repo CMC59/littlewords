@@ -4,6 +4,7 @@ import 'package:littlewords/bagScreen.dart';
 import 'package:latlong2/latlong.dart' as mylatlong;
 import 'package:latlong2/latlong.dart';
 import 'package:location/location.dart';
+import 'package:path/path.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
@@ -29,13 +30,44 @@ class _MyHomePageState extends State<MyHomePage> {
           title: Text(widget.title),
         ),
         body: Myappmaps(),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.shopping_bag_outlined),
-      onPressed: () {showDialog(context: context, builder: (BuildContext context) {
-        return showBag();
-      });
-      },
+      floatingActionButton: Wrap( //will break to another line on overflow
+        direction: Axis.horizontal, //use vertical to show  on vertical axis
+        children: <Widget>[
+          Container(
+              margin:EdgeInsets.all(10),
+              child: FloatingActionButton(
+                onPressed: (){
+                  showDialog(context: context, builder: (BuildContext context) {
+                    return AlertDialog(
+                      title: Text('Ajouter un mot'),
+                      content: TextField(
+                        decoration: InputDecoration(hintText: "Entre ton mot ici"),
+                      ),
+                      actions: [
+                        TextButton(
+                          child: Text('Ajouter'),
+                          onPressed: (){},
+                        ),
+                      ],
+
+                    );
+                  });
+                }
+              )
+          ), // button second
+        Container(
+          margin:EdgeInsets.all(10),
+          child: FloatingActionButton(
+          child: Icon(Icons.shopping_bag_outlined),
+          onPressed: () {showDialog(context: context, builder: (BuildContext context) {
+            return showBag();
+          });
+          },
+        ), )
+    // Add more buttons here
+        ],
       ),
+
     );
   }
 }
