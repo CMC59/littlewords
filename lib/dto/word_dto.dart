@@ -1,8 +1,8 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 // flutter pub run build_runner build --delete-conflicting-outputs
+part 'word_dto.g.dart';
 
-part '../word_dto.g.dart';
 
 @JsonSerializable() // Va permettre de générer des méthodes from et toJSON
 class WordDTO {

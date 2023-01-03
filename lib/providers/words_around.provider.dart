@@ -6,7 +6,7 @@ import 'package:latlong2/latlong.dart';
 import 'package:littlewords/dto/word_dto.dart';
 import 'package:littlewords/providers/device_location.provider.dart';
 import 'package:littlewords/providers/dio.provider.dart';
-import 'package:littlewords/words_dto.dart';
+import 'package:littlewords/dto/words_dto.dart';
 
 final wordsAroundProvider = FutureProvider<List<WordDTO>>((ref) async {
   AsyncValue<LatLng?> location = ref.watch(deviceLocationProvider);
