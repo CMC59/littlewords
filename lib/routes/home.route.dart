@@ -30,7 +30,13 @@ class _MyHomePageState extends State<MyHomePage> {
         body: Myappmaps(),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.shopping_bag_outlined),
-      onPressed: () {},
+      onPressed: () {showDialog(context: context, builder: (BuildContext context) {
+        return new AlertDialog(
+          title: new Text("Ma liste de mots"),
+          content: new Text("Mot"),
+        );
+      });
+      },
       ),
     );
   }
