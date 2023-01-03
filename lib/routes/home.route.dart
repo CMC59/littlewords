@@ -25,7 +25,11 @@ class _MyHomePageState extends State<MyHomePage> {
         appBar: AppBar(
           title: Text(widget.title),
         ),
-        body: Myappmaps(latitude: 12.4,longitude: 12.5)
+        body: Myappmaps(latitude: 12.4,longitude: 12.5),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.shopping_bag_outlined),
+      onPressed: () {},
+      ),
     );
   }
 }
