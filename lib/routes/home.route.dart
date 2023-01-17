@@ -6,6 +6,7 @@ import 'package:latlong2/latlong.dart';
 import 'package:location/location.dart';
 import 'package:path/path.dart';
 
+
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
 
@@ -36,6 +37,7 @@ class _MyHomePageState extends State<MyHomePage> {
           Container(
               margin:EdgeInsets.all(10),
               child: FloatingActionButton(
+                child: Icon(Icons.add_circle),
                 onPressed: (){
                   showDialog(context: context, builder: (BuildContext context) {
                     return AlertDialog(
@@ -46,7 +48,9 @@ class _MyHomePageState extends State<MyHomePage> {
                       actions: [
                         TextButton(
                           child: Text('Ajouter'),
-                          onPressed: (){},
+                          onPressed: (){
+                            
+                          },
                         ),
                       ],
 
