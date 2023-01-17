@@ -3,6 +3,7 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:littlewords/bagScreen.dart';
 import 'package:latlong2/latlong.dart' as mylatlong;
 import 'package:latlong2/latlong.dart';
+import 'package:littlewords/providers/wordsAroundMarkerLayer.dart';
 import 'package:location/location.dart';
 import 'package:path/path.dart';
 
@@ -98,6 +99,7 @@ class Myappmaps extends StatelessWidget {
           'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
           userAgentPackageName: 'dev.fleaflet.flutter_map.example',
         ),
+        WordsAroundMarkerLayer()
       ]
     );
   }
