@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:littlewords/bagScreen.dart';
 import 'package:latlong2/latlong.dart' as mylatlong;
 import 'package:latlong2/latlong.dart';
 import 'package:littlewords/providers/device_location.provider.dart';
 import 'package:littlewords/providers/wordsAroundMarkerLayer.dart';
+import 'package:littlewords/main.dart';
 import 'package:location/location.dart';
 import 'package:path/path.dart';
 
@@ -50,11 +52,11 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                       actions: [
                         TextButton(
-                          child: Text('Ajouter'),
+
                           onPressed: (){
-                            
-                          },
-                        ),
+                            fetchData();
+                          }, child: const Text("Post"))
+
                       ],
 
                     );
@@ -81,7 +83,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
 class Myappmaps extends ConsumerWidget {
 
-  
+
   final _mapController = MapController();
   @override
   Widget build(BuildContext context, WidgetRef ref) {

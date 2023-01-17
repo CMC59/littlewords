@@ -1,5 +1,7 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:littlewords/dto/word_dto.dart';
 import 'package:littlewords/routes/username.route.dart';
 import 'package:littlewords/routes/home.route.dart';
 import 'package:littlewords/routes/error.route.dart';
@@ -12,6 +14,7 @@ void main() {
 
 class MyApp extends ConsumerWidget {
   const MyApp({super.key});
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return MaterialApp(
@@ -19,24 +22,26 @@ class MyApp extends ConsumerWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: ref.watch(usernameProvider).when(data: _data, error: _error, loading: _loading),
+      home: ref
+          .watch(usernameProvider)
+          .when(data: _data, error: _error, loading: _loading),
     );
   }
 
   Widget? _data(String? data) {
-    if(null == data){
+    if (null == data) {
       return UsernameRoute();
     }
-    return  const MyHomePage(title: 'LittleWords');
+    return const MyHomePage(title: 'LittleWords');
   }
+
   Widget? _error(error, stack) {
     return const ErrorRoute();
-
   }
+
   Widget? _loading() {
     return const LoadingRoute();
   }
-
 }
 
 class MyApp2 extends StatelessWidget {
@@ -55,5 +60,19 @@ class MyApp2 extends StatelessWidget {
   }
 }
 
+void fetchData() async {
+  var baseOptions = BaseOptions(
+    baseUrl:'https://backend.smallwords.samyn.ovh',
+    connectTimeout: 10000,
+    receiveTimeout: 10000,
+  );
+  //Construction de Dio avec les options
+  final Dio dio = Dio(baseOptions);
 
-
+  final w = WordDTO(null, 'test', 'content', 29, 39);
+  print(w.toString());
+  var response =
+      await dio.post("/word", data: w);
+  print(response.statusCode);
+  print(response.data.toString());
+}
