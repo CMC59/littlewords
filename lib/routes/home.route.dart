@@ -36,6 +36,7 @@ class _MyHomePageState extends State<MyHomePage> {
           Container(
               margin:EdgeInsets.all(10),
               child: FloatingActionButton(
+                  child: Icon(Icons.exposure_plus_1),
                 onPressed: (){
                   showDialog(context: context, builder: (BuildContext context) {
                     return AlertDialog(
@@ -49,7 +50,6 @@ class _MyHomePageState extends State<MyHomePage> {
                           onPressed: (){},
                         ),
                       ],
-
                     );
                   });
                 }
@@ -64,6 +64,7 @@ class _MyHomePageState extends State<MyHomePage> {
           });
           },
         ), )
+
     // Add more buttons here
         ],
       ),
