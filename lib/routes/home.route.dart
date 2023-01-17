@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:littlewords/bagScreen.dart';
 import 'package:latlong2/latlong.dart' as mylatlong;
 import 'package:latlong2/latlong.dart';
+import 'package:littlewords/providers/device_location.provider.dart';
 import 'package:littlewords/providers/wordsAroundMarkerLayer.dart';
 import 'package:location/location.dart';
 import 'package:path/path.dart';
@@ -77,57 +79,37 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
-class Myappmaps extends StatelessWidget {
+class Myappmaps extends ConsumerWidget {
 
   final _mapController = MapController();
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    return ref.watch(deviceLocationProvider).when(data: data, error: error, loading: loading);
+  }
+
+  Widget data(mylatlong.LatLng data) {
+
     return FlutterMap(
-      mapController: _mapController,
-      options: MapOptions(
-          zoom: 14,
-          onMapReady: () async{
-            final LocationData? locationData = await _getDeviceLocation();
-
-            if(locationData == null) return;
-
-            _mapController.move(LatLng(locationData.latitude!, locationData.longitude!), _mapController.zoom);
-          }),
-      children: [
-        TileLayer(
-          urlTemplate:
-          'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-          userAgentPackageName: 'dev.fleaflet.flutter_map.example',
-        ),
-        WordsAroundMarkerLayer()
-      ]
+        mapController: _mapController,
+        options: MapOptions(
+            zoom: 14,
+            center:data),
+        children: [
+          TileLayer(
+            urlTemplate:
+            'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+            userAgentPackageName: 'dev.fleaflet.flutter_map.example',
+          ),
+          WordsAroundMarkerLayer()
+        ]
     );
   }
-}
 
-Future<LocationData?> _getDeviceLocation() async {
-  Location location = Location();
-
-
-  bool serviceEnabled = await location.serviceEnabled();
-  if(!serviceEnabled){
-    serviceEnabled = await location.requestService();
-    if(!serviceEnabled){
-      return Future.value(null);
-    }
+  Widget error(Object error, StackTrace stackTrace) {
+    return SizedBox();
   }
 
-  // On verifier que la perm
-  PermissionStatus permissionGranted = await location.hasPermission();
-  if(permissionGranted == PermissionStatus.denied){
-    permissionGranted = await location.requestPermission();
-    if(permissionGranted != PermissionStatus.denied){
-      return Future.value(null);
-    }
+  Widget loading() {
+    return CircularProgressIndicator();
   }
-
-  return location.getLocation();
-
 }
-
-
